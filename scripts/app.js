@@ -6,6 +6,7 @@ getRecommendations().then((data) => {
   }
 
   const headerContainer = document.createElement("span");
+  headerContainer.classList.add("header-container");
   const headerTitle = document.createElement("span");
   headerTitle.textContent = "You May Like";
 
@@ -31,12 +32,12 @@ function createSuggestion(suggestionData, parentContainer) {
 
   const imageLink = document.createElement("a");
   imageLink.href = suggestionData.url;
+  imageLink.target = "_blank";
 
   const imageContainer = document.createElement("div");
+
   const image = document.createElement("span");
-
   image.classList.add("suggestion-image");
-
   image.style.backgroundImage =
     "url('" + suggestionData.thumbnail[0].url + "')";
   image.style.height = suggestionData.thumbnail[0].height / 2 + "px";
@@ -44,13 +45,13 @@ function createSuggestion(suggestionData, parentContainer) {
 
   const textsLink = document.createElement("a");
   textsLink.href = suggestionData.url;
+  textsLink.target = "_blank";
 
   const textsContainer = document.createElement("span");
   textsContainer.classList.add("texts-container");
 
   const titleContainer = document.createElement("span");
   titleContainer.classList.add("title-container");
-
   titleContainer.textContent = suggestionData.name;
 
   const brandingContainer = document.createElement("span");
