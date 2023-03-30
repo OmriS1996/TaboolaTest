@@ -8,6 +8,7 @@ function createSuggestion(suggestionData, parentContainer) {
   const imageLink = elementConstructor("a", suggestionContainer, null, [
     { attributeName: "href", attributeValue: suggestionData.url },
     { attributeName: "target", attributeValue: "_blank" },
+    { attributeName: "title", attributeValue: suggestionData.name },
   ]);
 
   const imageContainer = elementConstructor("div", imageLink);
@@ -34,6 +35,7 @@ function createSuggestion(suggestionData, parentContainer) {
   const textsLink = elementConstructor("a", suggestionContainer, null, [
     { attributeName: "href", attributeValue: suggestionData.url },
     { attributeName: "target", attributeValue: "_blank" },
+    { attributeName: "title", attributeValue: suggestionData.name },
   ]);
 
   const textsContainer = elementConstructor("span", textsLink, [
@@ -53,6 +55,24 @@ function createSuggestion(suggestionData, parentContainer) {
     ],
     suggestionData.name
   );
+
+  if (suggestionData.categories) {
+    let categoriesText = "";
+
+    for (var i = 0; i < suggestionData.categories.length; i++) {
+      if (i > 0 && i < suggestionData.categories.length) {
+        categoriesText += " | ";
+      }
+      categoriesText += suggestionData.categories[i];
+    }
+    elementConstructor(
+      "span",
+      textsContainer,
+      ["categories-container"],
+      null,
+      categoriesText
+    );
+  }
 
   const brandingContainer = elementConstructor(
     "span",

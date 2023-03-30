@@ -1,3 +1,7 @@
+* {
+  font-family: "Open Sans", Helvetica, Verdana, sans-serif;
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -6,6 +10,7 @@
 .data-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .suggestion-container {
@@ -29,13 +34,24 @@
 }
 
 .texts-container {
+  height: 5rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
 }
 
 .title-container {
   font-weight: bold;
-  font-size: 1.25rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+.brand-container {
+  color: #999999;
 }
 
 @media (max-width: 600px) {
