@@ -44,7 +44,13 @@ function createSuggestion(suggestionData, parentContainer) {
     "span",
     textsContainer,
     ["title-container"],
-    null,
+    [
+      {
+        attributeName: "style",
+        attributeValue:
+          "max-width:" + suggestionData.thumbnail[0].width / 2 + "px",
+      },
+    ],
     suggestionData.name
   );
 
@@ -52,7 +58,13 @@ function createSuggestion(suggestionData, parentContainer) {
     "span",
     textsContainer,
     ["brand-container"],
-    null,
+    [
+      {
+        attributeName: "style",
+        attributeValue:
+          "max-width:" + suggestionData.thumbnail[0].width / 2 + "px",
+      },
+    ],
     suggestionData.branding + " | " + suggestionData.origin
   );
 
