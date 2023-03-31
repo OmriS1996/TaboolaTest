@@ -1,18 +1,16 @@
 "use strict";
 
-function rboxCreator(error, data) {
+function rboxCreator(data) {
   if (!data || data.list.length === 0) {
     return;
   }
 
-  const headerContainer = elementConstructor("span", mainContainer, [
-    "header-container",
-  ]);
+  const headerContainer = elementConstructor("span", mainContainer);
+  addStyle(headerContainer, ["header-container"]);
 
   const headerTitle = elementConstructor(
     "span",
     headerContainer,
-    null,
     null,
     "You May Like"
   );
@@ -21,13 +19,11 @@ function rboxCreator(error, data) {
     "span",
     headerContainer,
     null,
-    null,
     "Sponsored Links by Taboola"
   );
 
-  const dataContainer = elementConstructor("div", mainContainer, [
-    "data-container",
-  ]);
+  const dataContainer = elementConstructor("div", mainContainer);
+  addStyle(dataContainer, ["data-container"]);
 
   for (var i = 0; i < data.list.length; i++) {
     createSuggestion(data.list[i], dataContainer);

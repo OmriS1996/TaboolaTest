@@ -1,17 +1,25 @@
 "use strict";
 
 function getData(url, callback) {
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
+
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
-        var data = JSON.parse(xhr.responseText);
-        callback(null, data);
+        let data = JSON.parse(xhr.responseText);
+        callback(data);
       } else {
-        callback(xhr.statusText);
+        setTimeout(function () {
+          openAndSend("GET", url);
+        }, 3000);
       }
     }
   };
-  xhr.open("GET", url);
-  xhr.send();
+
+  openAndSend("GET", url);
+
+  function openAndSend(method, url) {
+    xhr.open(method, url);
+    xhr.send();
+  }
 }

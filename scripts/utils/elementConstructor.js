@@ -1,34 +1,19 @@
 "use strict";
 
-function elementConstructor(
-  elementTag,
-  elementParent,
-  classesArray,
-  attributeObjectArray,
-  text
-) {
+function elementConstructor(elementTag, elementParent, attributesObject, text) {
   const element = document.createElement(elementTag);
 
   if (text) {
-    element.innerHTML = text;
+    element.innerText = text;
   }
 
-  if (classesArray && classesArray.length > 0) {
-    for (var i = 0; i < classesArray.length; i++) {
-      element.classList.add(classesArray[i]);
-    }
+  if (attributesObject) {
+    addAttributes(element, attributesObject);
   }
 
-  if (attributeObjectArray && attributeObjectArray.length > 0) {
-    for (var i = 0; i < attributeObjectArray.length; i++) {
-      element.setAttribute(
-        attributeObjectArray[i].attributeName,
-        attributeObjectArray[i].attributeValue
-      );
-    }
+  if (elementParent) {
+    elementParent.appendChild(element);
   }
-
-  elementParent.appendChild(element);
 
   return element;
 }

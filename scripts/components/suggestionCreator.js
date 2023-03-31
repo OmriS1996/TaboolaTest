@@ -1,60 +1,43 @@
 "use-strict";
 
 function createSuggestion(suggestionData, parentContainer) {
-  const suggestionContainer = elementConstructor("div", parentContainer, [
-    "suggestion-container",
-  ]);
+  const suggestionContainer = elementConstructor("div", parentContainer);
+  addStyle(suggestionContainer, ["suggestion-container"]);
 
-  const imageLink = elementConstructor("a", suggestionContainer, null, [
-    { attributeName: "href", attributeValue: suggestionData.url },
-    { attributeName: "target", attributeValue: "_blank" },
-    { attributeName: "title", attributeValue: suggestionData.name },
-  ]);
+  const imageLink = elementConstructor("a", suggestionContainer, {
+    href: suggestionData.url,
+    target: "_blank",
+    title: suggestionData.name,
+  });
 
   const imageContainer = elementConstructor("div", imageLink);
 
-  const image = elementConstructor(
-    "span",
-    imageContainer,
-    ["suggestion-image"],
-    [
-      {
-        attributeName: "style",
-        attributeValue:
-          "background-image:url('" +
-          suggestionData.thumbnail[0].url +
-          "'); height:" +
-          suggestionData.thumbnail[0].height / 2 +
-          "px; width:" +
-          suggestionData.thumbnail[0].width / 2 +
-          "px",
-      },
-    ]
-  );
+  const image = elementConstructor("span", imageContainer);
 
-  const textsLink = elementConstructor("a", suggestionContainer, null, [
-    { attributeName: "href", attributeValue: suggestionData.url },
-    { attributeName: "target", attributeValue: "_blank" },
-    { attributeName: "title", attributeValue: suggestionData.name },
-  ]);
+  addStyle(image, ["suggestion-image"], {
+    backgroundImage: "url(" + suggestionData.thumbnail[0].url + ")",
+    height: suggestionData.thumbnail[0].height / 2 + "px",
+    width: suggestionData.thumbnail[0].width / 2 + "px",
+  });
 
-  const textsContainer = elementConstructor("span", textsLink, [
-    "texts-container",
-  ]);
+  const textsLink = elementConstructor("a", suggestionContainer, {
+    href: suggestionData.url,
+    target: "_blank",
+    title: suggestionData.name,
+  });
+
+  const textsContainer = elementConstructor("span", textsLink);
+  addStyle(textsContainer, ["texts-container"]);
 
   const titleContainer = elementConstructor(
     "span",
     textsContainer,
-    ["title-container"],
-    [
-      {
-        attributeName: "style",
-        attributeValue:
-          "max-width:" + suggestionData.thumbnail[0].width / 2 + "px",
-      },
-    ],
+    null,
     suggestionData.name
   );
+  addStyle(titleContainer, ["title-container"], {
+    maxWidth: suggestionData.thumbnail[0].width / 2 + "px",
+  });
 
   if (suggestionData.categories) {
     let categoriesText = "";
@@ -65,28 +48,24 @@ function createSuggestion(suggestionData, parentContainer) {
       }
       categoriesText += suggestionData.categories[i];
     }
-    elementConstructor(
+    const categories = elementConstructor(
       "span",
       textsContainer,
-      ["categories-container"],
       null,
       categoriesText
     );
+    addStyle(categories, ["categories-container"]);
   }
 
-  const brandingContainer = elementConstructor(
+  const brandContainer = elementConstructor(
     "span",
     textsContainer,
-    ["brand-container"],
-    [
-      {
-        attributeName: "style",
-        attributeValue:
-          "max-width:" + suggestionData.thumbnail[0].width / 2 + "px",
-      },
-    ],
+    null,
     suggestionData.branding + " | " + suggestionData.origin
   );
+  addStyle(brandContainer, ["brand-container"], {
+    maxWidth: suggestionData.thumbnail[0].width / 2 + "px",
+  });
 
   parentContainer.appendChild(suggestionContainer);
 }
