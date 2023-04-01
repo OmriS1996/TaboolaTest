@@ -1,6 +1,9 @@
 "use strict";
 
-function elementConstructor(elementTag, elementParent, attributesObject, text) {
+function elementConstructor(
+  elementTag,
+  { elementParent, attributesObject, text }
+) {
   const element = document.createElement(elementTag);
 
   if (text) {
