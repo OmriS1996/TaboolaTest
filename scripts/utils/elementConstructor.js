@@ -1,21 +1,19 @@
 "use strict";
 
-function elementConstructor(
-  elementTag,
-  { elementParent, attributesObject, text }
-) {
+function elementConstructor(elementTag, addonsObject) {
   const element = document.createElement(elementTag);
+  if (addonsObject) {
+    if (addonsObject.text) {
+      element.innerText = addonsObject.text;
+    }
 
-  if (text) {
-    element.innerText = text;
-  }
+    if (addonsObject.attributesObject) {
+      addAttributes(element, addonsObject.attributesObject);
+    }
 
-  if (attributesObject) {
-    addAttributes(element, attributesObject);
-  }
-
-  if (elementParent) {
-    elementParent.appendChild(element);
+    if (addonsObject.elementParent) {
+      addonsObject.elementParent.appendChild(element);
+    }
   }
 
   return element;
