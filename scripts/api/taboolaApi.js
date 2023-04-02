@@ -1,5 +1,3 @@
-"use strict";
-
 function getData(url, callback) {
   let xhr = new XMLHttpRequest();
 

@@ -1,5 +1,3 @@
-"use strict";
-
 function elementConstructor(elementTag, addonsObject) {
   const element = document.createElement(elementTag);
   if (addonsObject) {
