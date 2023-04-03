@@ -8,5 +8,7 @@ function createSuggestionTexts(parentContainer, suggestionData) {
 
   createSuggestionTitle(textsContainer, suggestionData);
 
+  createSuggestionCategory(textsContainer, suggestionData);
+
   createSuggestionBrand(textsContainer, suggestionData);
 }

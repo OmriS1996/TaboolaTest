@@ -9,7 +9,7 @@ function createSuggestionCategory(parentContainer, suggestionData) {
       categoriesText += suggestionData.categories[i];
     }
     const categories = elementConstructor("span", {
-      elementParent: textsContainer,
+      elementParent: parentContainer,
       text: categoriesText,
     });
     addStyle(categories, ["categories-container"]);
